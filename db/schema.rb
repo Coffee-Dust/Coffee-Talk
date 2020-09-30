@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_21_185701) do
+ActiveRecord::Schema.define(version: 2020_09_26_182359) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "post_id"
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(version: 2020_09_21_185701) do
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "reactions", force: :cascade do |t|
+    t.string "reactable_type", null: false
+    t.integer "reactable_id", null: false
+    t.integer "format_type"
+    t.integer "reactor_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["reactable_type", "reactable_id"], name: "index_reactions_on_reactable_type_and_reactable_id"
   end
 
   create_table "users", force: :cascade do |t|
